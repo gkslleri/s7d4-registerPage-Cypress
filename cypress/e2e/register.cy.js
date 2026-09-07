@@ -58,7 +58,7 @@ describe('Register Page', () => {
       cy.get('[data-cy="ad-input"]').type('Göksel');
       cy.get('[data-cy="soyad-input"]').type('İleri');
       cy.get('[data-cy="email-input"]').type('emre@vit.com.tr');
-      cy.get('[data-cy="password-input"]').type('1234Aa*');
+      cy.get('[data-cy="password-input"]').type('12345Aa*');
       // Assert
       cy.get('[data-cy="submit-button"]').should('not.be.disabled');
     });
@@ -70,7 +70,7 @@ describe('Register Page', () => {
       cy.get('[data-cy="ad-input"]').type('Göksel');
       cy.get('[data-cy="soyad-input"]').type('İleri');
       cy.get('[data-cy="email-input"]').type('emre@vit.com.tr');
-      cy.get('[data-cy="password-input"]').type('1234Aa*');
+      cy.get('[data-cy="password-input"]').type('12345Aa*');
       cy.get('[data-cy="submit-button"]').click();
       // Assert
       cy.get('[data-cy="response-message"]').should('be.visible');

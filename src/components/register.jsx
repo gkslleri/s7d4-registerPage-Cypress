@@ -1,6 +1,5 @@
 import { Button, Card, CardBody, Form, FormGroup, Input, Label, CardHeader, FormFeedback, CardFooter } from "reactstrap";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 const initialValues = {
@@ -36,19 +35,11 @@ export default function Register() {
             );
     };
 
-    function validatePassword() {
-        var newPassword = document.getElementById('changePasswordForm').newPassword.value;
-        var minNumberofChars = 8;
-        var maxNumberofChars = 16;
-        var regularExpression = /^[a-zA-Z0-9!@#$%^&*]{8,16}$/;
-        alert(newPassword);
-        if (newPassword.length < minNumberofChars || newPassword.length > maxNumberofChars) {
-            return false;
-        }
-        if (!regularExpression.test(newPassword)) {
-            alert("password should contain atleast one number and one special character");
-            return false;
-        }
+    function validatePassword(password) {
+        const regularExpression =
+            /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,16}$/;
+
+        return regularExpression.test(password);
     }
 
     useEffect(() => {
@@ -97,7 +88,7 @@ export default function Register() {
         if (!isValid) return;
         axios
             .post("https://reqres.in/api/users", formData)
-            .then(response =>{
+            .then(response => {
                 setId(response.data.id);
                 setFormData(initialValues);
             })
